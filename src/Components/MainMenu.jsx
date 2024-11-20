@@ -1,15 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import iconKeyboard from "../assets/icon.png"; // Adjust path based on file structure
 import { toggleButton } from "./Confetti"; // Import the toggleButton function
 
-const MainMenu = () => {
-  const [isGreen, setIsGreen] = useState(false);
-  let buttonCodeActivated = false;
-
+const MainMenu = ({ buttonCodeActivated, setButtonCodeActivated }) => {
   const handleButtonClick = () => {
-    toggleButton(isGreen, setIsGreen); // Toggle the green state
-    buttonCodeActivated = !isGreen; // Update button activation logic
-    console.log("Button Activated:", buttonCodeActivated); // Debugging
+    setButtonCodeActivated((prev) => !prev); // Toggle the buttonCodeActivated state
+    console.log("Button Activated:", !buttonCodeActivated); // Debugging
   };
 
   return (
@@ -21,7 +17,7 @@ const MainMenu = () => {
         <button
           id="buttonCodeMode"
           onClick={handleButtonClick}
-          className={isGreen ? "green-text" : ""} // Apply the green-text class if the button is green
+          className={buttonCodeActivated ? "green-text" : ""} // Apply the green-text class if activated
         >
           &lt;/&gt;
         </button>
