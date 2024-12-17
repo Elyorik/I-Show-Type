@@ -1,0 +1,58 @@
+import React, { useState, useEffect } from "react";
+import "./App.css";
+import MainMenu from "./Components/MainMenu";
+import { useKeyPressTwo } from "./Components/useKeyPressTwo";
+import TypeWindow from "./Components/TypeWindow";
+import ResultWindow from "./Components/ResultWindow";
+
+function App() {
+  const pressedKeyTwo = useKeyPressTwo(); // Custom hook to capture key presses
+  const [buttonCodeActivated, setButtonCodeActivated] = useState(false); // State for button activation
+  const [currentView, setCurrentView] = useState("mainMenu"); // Set initial view to "mainMenu"
+
+  useEffect(() => {
+    if (pressedKeyTwo === "Enter") {
+      console.log("Result"); // Debug log for "Enter" key press
+      setCurrentView("mainMenu"); // Change to MainMenu view
+    } else if (pressedKeyTwo === " ") {
+      // Toggle between "typeWindow" and "scriptText" based on buttonCodeActivated
+      setCurrentView(buttonCodeActivated ? "scriptText" : "typeWindow");
+    }
+  }, [pressedKeyTwo, buttonCodeActivated]); // Dependencies: pressedKeyTwo and buttonCodeActivated
+
+  // Log the current view whenever it changes
+  useEffect(() => {
+    console.log(`Current view is: ${currentView}`);
+  }, [currentView]);
+
+  return (
+    <>
+      {currentView === "typeWindow" && (
+        <>
+          {console.log("Rendering TypeWindow")}
+          <TypeWindow />
+        </>
+      )}
+      {currentView === "scriptText" && (
+        <>
+          {console.log("Rendering ScriptText")}
+          <MainMenu
+            buttonCodeActivated={buttonCodeActivated}
+            setButtonCodeActivated={setButtonCodeActivated}
+          />
+        </>
+      )}
+      {currentView === "mainMenu" && (
+        <>
+          {console.log("Rendering MainMenu")}
+          <MainMenu
+            buttonCodeActivated={buttonCodeActivated}
+            setButtonCodeActivated={setButtonCodeActivated}
+          />
+        </>
+      )}
+    </>
+  );
+}
+
+export default App;

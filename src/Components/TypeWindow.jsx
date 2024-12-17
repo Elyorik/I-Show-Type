@@ -1,21 +1,20 @@
 import React, { useState } from "react";
 import { useKeyPress } from "./useKeyPress";
-import getRandomText from "./Texts";
+import Checker from "./Checker";
+import GifCard from "./GifCard.jsx"; // Import the GifCard component
+
+let randomTextValue = null;
 
 const TypeWindow = () => {
   const pressedKey = useKeyPress(); // Use the hook
 
-  // State to hold the random text
-  const [randomText, setRandomText] = useState(getRandomText());
-
   return (
-    <div>
-      <div className="GifCard"></div>
-      <div className="TextField">
-        <h1>{randomText}</h1> {/* Display the random text */}
-      </div>
+    <div className="card">
+      <div className="GifCard"> <GifCard /></div>
+      <Checker/>
     </div>
   );
 };
+
 
 export default TypeWindow;

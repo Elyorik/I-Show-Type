@@ -40,7 +40,7 @@
   position:relative;
   margin-top: 20px;
 }
-#MainName{
+.MainName{
   position:relative;
   font-size: 100px;
   font-weight: bold;
@@ -129,4 +129,61 @@
   bottom: 0;
   pointer-events: none;
   z-index: 9999;
+}
+
+.GifCard{
+  width: 100vw; /* Sets the width to 100% of the viewport width */
+  height: 25vw; /* Example height */
+  margin-bottom: 100px;
+  overflow: hidden; /* Hide the part of the GIF that overflows */
+  position: relative; /* Ensure the child elements position relative to this div */
+}
+
+.correct { color: green; }
+.incorrect { color: red; }
+.char { font-size: 24px; }
+
+.number-container {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.digit {
+  position: relative;
+  font-size: 100px;
+  color: white;
+  font-weight: bold;
+  overflow: hidden;
+  width: 70px;
+  height: 120px;
+}
+
+.digit span {
+  width: 100%;
+  text-align: center;
+  animation: scroll 1s ease-in-out forwards;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+.CorrectLettersText{
+  font-size: 70px;
+  margin-bottom: 0px;
+}
+.GifImg{
+  width: 100%;  /* Ensure the GIF width fills the div */
+  height: 100%; /* Ensure the GIF height fills the div */
+  object-fit: cover; /* This ensures the GIF fills the div and cuts off excess parts */
 }
